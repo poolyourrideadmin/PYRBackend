@@ -17,8 +17,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Aman',
             'email' => 'amanbahuguna009@gmail.com',
-            'password' => Hash::make('testpass'),
-            'device_name' => 'Redmi Y2'
+            'password' => Hash::make('testpass')
         ]);
     }
 }
