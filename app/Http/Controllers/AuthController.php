@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-
     public function login(AuthRequest $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -42,7 +41,6 @@ class AuthController extends Controller
         return response()->json($userData);
 
     }
-
 
     public function register(AuthRequest $request)
     {
