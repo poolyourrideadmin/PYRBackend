@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\AuthRequest;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -21,7 +22,24 @@ class AuthController extends Controller
             ]);
         }
 
-        return $user->createToken($request->device_name)->plainTextToken;
+        $token = $user->createToken($request->device_name)->plainTextToken;
+
+        // Store user information and token in local storage
+        $userData = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'token' => $token
+        ];
+
+        // Encode user data as JSON
+        $userDataJson = json_encode($userData);
+
+        // Save user data to local storage
+        Storage::put('user.json', $userDataJson);
+
+        return response()->json($userData);
+
     }
 
     public function register(AuthRequest $request)
