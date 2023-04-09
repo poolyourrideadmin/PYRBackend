@@ -27,7 +27,7 @@ class RideController extends Controller
     public function store(PublishedRequest $request)
     {
 
-        $ride = Ride::create($request->all());
+        $ride = Ride::create($request['params']);
 
         return response()->json(['ride' => $ride], 201);
     }

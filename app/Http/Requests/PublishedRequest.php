@@ -24,8 +24,8 @@ class PublishedRequest extends FormRequest
         return [
             'driver_id' => 'nullable|exists:users,id',
             'car_id' => 'nullable|exists:cars,id',
-            'start_location' => 'required',
-            'end_location' => 'required',
+            'start_location' => 'nullable',
+            'end_location' => 'nullable',
             'date' => 'nullable|date_format:Y-m-d',
             'time' => 'nullable|date_format:H:i:s',
             'seats_available' => 'nullable|integer|min:1',
